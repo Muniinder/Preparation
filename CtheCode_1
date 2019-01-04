@@ -1,8 +1,8 @@
 Day:1     3.1.2019        
 Review : 1.6, 1.3
-Total Done : 1.(1,2,3,4,5,6,7)
+Total Done : 1.(1,2,3,4,5,6,7,8)
 Work : {
-          def removeDuplicates(s):
+          def removeDuplicates(s):                            ------------------------------3------------------------------------
             length_of_string = len(s)
             if length_of_string == 0:
                     return 'Empty String'
@@ -16,7 +16,7 @@ Work : {
                             s = s[0 : var1] + s[ var1+1 : ]
                         var1 += 1
                 return s
-        def checkAnagram(s1,s2):
+        def checkAnagram(s1,s2):                              ------------------------------4------------------------------------
             length_of_string1 = len(s1)
             length_of_string2 = len(s2)
             if length_of_string1 == 0 or length_of_string2 == 0:
@@ -37,7 +37,7 @@ Work : {
             else:
                 return "Lenghts of strings are not same"
 
-        def rotateArray(arr1):
+        def rotateArray(arr1):                      ------------------------------6------------------------------------
 
             print("Before Rotation")
             print_2d_array(arr1)
@@ -55,7 +55,7 @@ Work : {
                 for a2 in a1:
                     print(a2,"  ",end="")
                 print("\n",end="")
-        def entire_row_col_zero(arr1):
+        def entire_row_col_zero(arr1):                    ------------------------------7--------------------------------------
               l1 = len(arr1)
               l2 = len(arr1[0])
               c_col = []
@@ -75,4 +75,18 @@ Work : {
                       for a2 in a1:
                           print(a2,"  ",end="")
                       print("\n",end="")
+          def is_substring(s1,s2):                ------------------------------8------------------------------------
+              if s1.find(s2) == -1:
+                  return 0
+              else:
+                  return 1
+          def isRotation(s1,s2):
+              if len(s1) == len(s2):
+                  s2 = s2 + s2
+                  if s2.find(s1) == -1:
+                     return 0
+                  else:
+                      return 1
+              else:
+                  return 0
 }
