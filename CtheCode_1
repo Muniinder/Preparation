@@ -96,3 +96,210 @@ Work : {
               else:
                   return 0
 }
+Day:3     5.1.2019
+Day:4     6.1.2019
+Day:5     7.1.2019
+Day:6     8.1.2019
+Review:
+Total Done : 
+Work : {
+          class Node:
+    def __init__(self,data,min_val):
+        self.__data = data
+        self.__min_val = min_val
+    def get_data(self):
+        return self.__data
+    def get_min_val(self):
+        return self.__min_val
+class Stack:
+    def __init__(self,max_size):
+        self.__max_size = max_size
+        self.__elements = [None]*max_size
+        self.__top = -1
+        self.__min_ele = None
+    def is_empty(self):
+        if self.__top == -1:
+            return 1
+        return 0
+    def push(self,data):
+        if self.__top == -1:
+            self.__min_ele = data
+        else:
+            if self.__min_ele > data:
+                self.__min_ele = data
+        self.__top += 1
+        self.__elements[self.__top] = Node(data,self.__min_ele)
+        
+    def pop(self):                                              # will return the address
+        if self.is_empty():
+            print("Stack is empty")
+        else:
+            data = self.__elements[self.__top]
+            self.__top -= 1
+            return data
+    def is_full(self):
+        if self.__top == (self.__max_size - 1):
+            return 1
+        return 0
+    def get_max_size(self):
+        return self.__max_size
+        
+    def get_min(self):
+        min_ele = self.pop()
+        data = min_ele.get_data()
+        self.push(data)
+        return min_ele.get_min_val()
+        
+    def __str__(self):
+        msg = []
+        index = self.__top
+        while index >= 0:
+            msg.append(str( self.__elements[index].get_data() ))
+            index -= 1
+        msg = " ".join(msg)
+        msg = "Stack from top to bottom : " + msg
+        return msg
+-------------------------------------SET OF STACKS IN A STACK WHEN IT REACHES A THRESHHOLD VALUE-------------------------------------
+class Stack:
+    def __init__(self,max_size):
+        self.__max_size=max_size
+        self.__elements=[None]*self.__max_size
+        self.__top=-1
+
+    def is_full(self):
+        if(self.__top==self.__max_size-1):
+            return True
+        return False
+
+    def is_empty(self):
+        if(self.__top==-1):
+            return True
+        return False
+
+    def push(self,data):
+        if(self.is_full()):
+            print("The stack is full!!")
+        else:
+            self.__top+=1
+            self.__elements[self.__top]=data
+
+    def pop(self):
+        if(self.is_empty()):
+            print("The stack is empty!!")
+        else:
+            data= self.__elements[self.__top]
+            self.__top-=1
+            return data
+
+    def display(self):
+        if(self.is_empty()):
+            print("The stack is empty")
+        else:
+            index=self.__top
+            while(index>=0):
+                print(self.__elements[index])
+                index-=1
+
+    def get_max_size(self):
+        return self.__max_size
+
+    #You can use the below __str__() to print the elements of the DS object while debugging
+    def __str__(self):
+        msg=[]
+        index=self.__top
+        while(index>=0):
+            msg.append((str)(self.__elements[index]))
+            index-=1
+        msg=" ".join(msg)
+        msg = " " + msg
+        return msg
+        
+class set_of_stack:
+    def __init__(self,max_size):
+        self.__max_size = max_size
+        self.__elements = [Stack(max_size)]
+        self.__top = -1
+    def is_empty(self):
+        for s in self.__elements:
+            if not s.is_empty():
+                return 0
+        return 1
+    def is_full(self):
+        if self.__top == self.__max_size - 1:
+            return True
+        return False
+        #for s in self.__elements:
+         #   if not s.is_full():
+         #       return False
+        return True
+    def push(self,data):
+        if self.__top == -1:
+            self.__top += 1
+        if self.is_full():
+            if self.__elements[self.__top].is_full():
+                print("SetStack is full")
+            else:
+                if self.__elements[self.__top].is_full():
+                    self.__top += 1
+                    temp = Stack(self.__max_size)
+                    self.__elements.append(temp)
+                    self.__elements[self.__top].push(data)
+                else:
+                    self.__elements[self.__top].push(data)
+        else:
+            if self.__elements[self.__top].is_full():
+                self.__top += 1
+                temp = Stack(self.__max_size)
+                self.__elements.append(temp)
+                self.__elements[self.__top].push(data)
+            else:
+                self.__elements[self.__top].push(data)
+    def pop(self):
+        if self.is_empty():
+            print("SetStack is empty")
+        else:
+            if self.__elements[self.__top].is_empty():
+                self.__top -= 1
+                return self.__elements[self.__top].pop()
+            else:
+                return self.__elements[self.__top].pop()
+    def print_set_of_stack(self):
+        if self.__top == -1:
+            print("Set of Stack is Empty")
+        else:
+            index = self.__top
+            print("\nTop to Bottom :", end= "")
+            while index >= 0:
+                print(self.__elements[index],end = "")
+                index -= 1
+
+s1 = set_of_stack(5)
+
+s1.push(25)
+s1.push(24)
+s1.push(23)
+s1.push(22)
+s1.push(21)
+s1.push(20)
+s1.push(19)
+s1.push(18)
+s1.push(17)
+s1.push(16)
+s1.push(15)
+s1.push(14)
+s1.push(13)
+s1.push(12)
+s1.push(11)
+s1.push(10)
+s1.push(9)
+s1.push(8)
+s1.push(7)
+s1.push(6)
+s1.push(5)
+s1.push(4)
+s1.push(3)
+s1.push(2)
+s1.push(1)
+s1.print_set_of_stack()
+
+}
