@@ -303,3 +303,17 @@ s1.push(1)
 s1.print_set_of_stack()
 
 }
+
+Day:7     9.1.2019
+Review: Tower of hanoi, sort_with_stack
+Total Done: Stacks almost complete
+Work:{
+          def sort_wc(s):
+              r = Stack(10)
+              while not s.is_empty():
+                  temp = s.pop()
+                  while not r.is_empty() and r.peek() > temp:
+                      s.push(r.pop())
+                  r.push(temp)
+              return r
+}
