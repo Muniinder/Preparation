@@ -317,3 +317,83 @@ Work:{
                   r.push(temp)
               return r
 }
+Day:8,9,10,11,12,13,14
+Work:     {         SUCCESSFULLY WASTED         }
+
+Day:15:   15.1.2019
+Review:
+Total Done: 
+Work:{
+          def sp_sort(s1):
+              s2 = Stack(6)
+              s2.push(s1.pop())
+              while not s1.is_empty():
+                  data = s1.pop()
+                  while not s2.is_empty() and s2.peek() > data:
+                      s1.push(s2.pop())
+                  s2.push(data)
+          class Node:
+    def __init__(self,key):
+        self.left = None
+        self.right = None
+        self.key = key
+    def get_left(self):
+        return self.left
+    def get_right(self):
+        return self.right
+    def get_key(self):
+        return self.key
+    def set_left(self,Node):
+        self.left = Node
+    def set_right(self,Node):
+        self.right = Node
+
+class BinaryTree:
+    def __init__(self,root_key):
+        self.__root = Node(root_key)
+    def get_root(self):
+        return self.__root
+    def add_Node(self,val):
+        node = self.__root
+        while node:
+            if node.get_left() is None:
+                node.set_left(Node(val))
+                break
+            elif node.get_right() is None:
+                node.set_right(Node(val))
+                break
+            node = node.get_left()
+
+    #def del_a_Node(self,key):
+        
+    #def print_InOrder(self):
+def InOrder(root):
+    if root:
+        InOrder(root.left)
+        print(root.key,end=" ")
+        InOrder(root.right)
+def pre_order(root):
+    if root:
+        print(root.key,end=" ")
+        pre_order(root.left)
+        pre_order(root.right)
+def post_order(root):
+    if root:
+        post_order(root.left)
+        post_order(root.right)
+        print(root.key,end=" ")
+bt_1 = BinaryTree(1)
+bt_1.add_Node(2)
+bt_1.add_Node(3)
+bt_1.add_Node(4)
+bt_1.add_Node(5)
+InOrder(bt_1.get_root())
+print("\n")
+pre_order(bt_1.get_root())
+print("\n")
+post_order(bt_1.get_root())
+        
+    
+          
+
+}
