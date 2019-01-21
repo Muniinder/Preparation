@@ -456,8 +456,171 @@ print("\n")
 pre_order(bt_1.get_root())
 print("\n")
 post_order(bt_1.get_root())
-        
-    
+     
+}
+
+Day : 16,17,18,19,20
+work: {wasted}
+Day : 21
+Work:{
+          def height(root):
+              if root is None:
+                  return 0
+              return max(height(root.left),height(root.right)) + 1
+          def is_balanced(root):
+              if root is None:
+                  return True
+              lh = height(root.left)
+              rh = height(root.right)
+              if abs(lh-rh) > 1:
+                  return False
+              return True
+              
+          from collections import defaultdict
+          class graph:
+              def __init__(self):
+                  self.elements = defaultdict(list)
+              def add_edge(self,source,destination):
+                  self.elements[source].append(destination)
+              def print_bfs(self,s):
+                  queue = []
+                  if s < len(self.elements) and s >= 0:
+                      visited = [False]*len(self.elements)
+                  else:
+                      print("element is not there")
+                      return 0
+                  queue.append(s)
+                  while queue:
+                      data = queue.pop(0)
+                      visited[data] = True
+                      print(data,end=" ")
+                      for i in self.elements[data]:
+                          if visited[i] is False:
+                              visited[i] = True
+                              queue.append(i)
+              def have_edge_from(self,s,d):
+                  for i in self.elements[s]:
+                      if i == d:
+                          return True
+                  return False
+          g = graph()
+          g.add_edge(0,1)
+          g.add_edge(0,2)
+          g.add_edge(1,2)
+          g.add_edge(2,0)
+          g.add_edge(2,3)
+          g.add_edge(3,3)
+          g.print_bfs(0)
+          print(g.have_edge_from(2,3))
           
+   import time 
+          start = time.clock()
+          class Queue:
+              def __init__(self,max_size):
+
+                  self.__max_size=max_size
+                  self.__elements=[None]*self.__max_size
+                  self.__rear=-1
+                  self.__front=0
+
+              def is_full(self):
+                  if(self.__rear==self.__max_size-1):
+                          return True
+                  return False
+
+              def is_empty(self):
+                  if(self.__front>self.__rear):
+                      return True
+                  return False
+
+              def enqueue(self,data):
+                  if(self.is_full()):
+                      print("Queue is full!!!")
+                  else:
+                      self.__rear+=1
+                      self.__elements[self.__rear]=data
+
+              def dequeue(self):
+                  if(self.is_empty()):
+                      print("Queue is empty!!!")
+                  else:
+                      data=self.__elements[self.__front]
+                      self.__front+=1
+                      return data
+
+              def display(self):
+                  for index in range(self.__front, self.__rear+1):
+                      print(self.__elements[index])
+
+
+              def get_max_size(self):
+                  return self.__max_size
+
+              #You can use the below __str__() to print the elements of the DS object while debugging
+              def __str__(self):
+                  msg=[]
+                  index=self.__front
+                  while(index<=self.__rear):
+                      msg.append((str)(self.__elements[index]))
+                      index+=1
+                  msg=" ".join(msg)
+                  msg="Queue data(Front to Rear): "+msg
+                  return msg
+          class Node:
+              def __init__(self,key):
+                  self.key = key
+                  self.right = None
+                  self.left = None
+          class binary_tree:
+              def __init__(self,key):
+                  self.root = Node(key)
+          def Level_order(root):
+              if root is None:
+                  print("Empty")
+                  return 0
+              q1 = Queue(500)
+              q1.enqueue(root)
+              print(root.key,end=" ")
+              while not q1.is_empty():
+                  data = q1.dequeue()
+                  if data.left is not None:
+                      q1.enqueue(data.left)
+                      print(data.left.key,end=" ")
+                  if data.right is not None:
+                      q1.enqueue(data.right)
+                      print(data.right.key,end=" ")
+          def make_min_bin_tree_from(arr):
+              if len(arr) == 0:
+                  return None
+              queue = []
+              root = Node(arr.pop(0))
+              queue.append(root)
+              while len(arr):
+                  node = queue.pop(0)
+                  node.left = Node(arr.pop(0))
+                  queue.append(node.left)
+                  if len(arr):
+                      node.right = Node(arr.pop(0))
+                      queue.append(node.right)
+              return root
+          def make_min_bin_tree_recursively(arr):
+              return make_tree(arr,0,(len(arr)-1))
+          def make_tree(arr,start,end):
+              if end<start:
+                  return None
+              mid = (start+end) // 2
+              n = Node(arr[mid])
+              n.left = make_tree(arr,start,mid-1)
+              n.right = make_tree(arr,mid+1,end)
+              return n
+          arr= [1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9,1,2,3,4,5,6,7,8,9]
+          Level_order(make_min_bin_tree_from(arr))
+          Level_order(make_min_bin_tree_recursively(arr))
+          print("\n")
+          print(time.clock()-start)
+  
+  
 
 }
+
+
