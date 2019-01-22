@@ -618,9 +618,318 @@ Work:{
           Level_order(make_min_bin_tree_recursively(arr))
           print("\n")
           print(time.clock()-start)
-  
-  
+}
+Day: 22
+Work:{
+class l_node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+class Linked_list:
+    def __init__(self):
+        self.head = None
+    def add_node(self,data):
+        if self.head is None:
+            self.head = l_node(data)
+        else:
+            temp = self.head
+            while temp.next is not None:
+                temp = temp.next
+            temp.next = l_node(data)
+    def __str__(self):
+        head = self.head
+        msg = ""
+        while head is not None:
+            msg= msg + " " + str(head.data)
+            head = head.next
+        return msg
+class Queue:
+    def __init__(self,max_size=10):
 
+        self.__max_size=max_size
+        self.__elements=[None]*self.__max_size
+        self.__rear=-1
+        self.__front=0
+
+    def is_full(self):
+        if(self.__rear==self.__max_size-1):
+                return True
+        return False
+
+    def is_empty(self):
+        if(self.__front>self.__rear):
+            return True
+        return False
+
+    def enqueue(self,data):
+        if(self.is_full()):
+            print("Queue is full!!!")
+        else:
+            self.__rear+=1
+            self.__elements[self.__rear]=data
+
+    def dequeue(self):
+        if(self.is_empty()):
+            print("Queue is empty!!!")
+        else:
+            data=self.__elements[self.__front]
+            self.__front+=1
+            return data
+
+    def display(self):
+        for index in range(self.__front, self.__rear+1):
+            print(self.__elements[index])
+
+
+    def get_max_size(self):
+        return self.__max_size
+
+    #You can use the below __str__() to print the elements of the DS object while debugging
+    def __str__(self):
+        msg=[]
+        index=self.__front
+        while(index<=self.__rear):
+            msg.append((str)(self.__elements[index]))
+            index+=1
+        msg=" ".join(msg)
+        msg="Queue data(Front to Rear): "+msg
+        return msg
+class node:
+    def __init__(self,key):
+        self.key = key
+        self.left = None
+        self.right = None
+class bst:
+    def __init__(self,key):
+        self.root = node(key)
+    def get_root(self):
+        return self.root
+    def add_node(self,key):
+        root = self.root
+        while True:
+            if key < root.key:
+                if root.left is None:
+                    root.left = node(key)
+                    break
+                else:
+                    root = root.left
+            elif key > root.key:
+                if root.right is None:
+                    root.right = node(key)
+                    break
+                else:
+                    root = root.right
+def make_link_list_from(head):
+    q1=Queue()
+    q2=Queue()
+    root = head
+    q1.enqueue(root)
+    list_of_linked_list = []
+    while not q1.is_empty() or not q2.is_empty():
+        l1 = Linked_list()
+        while not q1.is_empty():
+            data = q1.dequeue()
+            l1.add_node(data.key)
+            if data.left is not None:
+                q2.enqueue(data.left)
+            if data.right is not None:    
+                q2.enqueue(data.right)
+        list_of_linked_list.append(l1)
+        l1 = Linked_list()
+        while not q2.is_empty():
+            data = q2.dequeue()
+            l1.add_node(data.key)
+            if data.left is not None:
+                q1.enqueue(data.left)
+            if data.right is not None:    
+                q1.enqueue(data.right)
+        list_of_linked_list.append(l1)
+    for i in list_of_linked_list:
+        print(end="\n")
+        print(i)
+def Level_order(root):
+    q1 = Queue(500)
+    q1.enqueue(root)
+    print(root.key,end=" ")
+    while not q1.is_empty():
+        data = q1.dequeue()
+        if data.left is not None:
+            q1.enqueue(data.left)
+            print(data.left.key,end=" ")
+        if data.right is not None:
+            q1.enqueue(data.right)
+            print(data.right.key,end=" ")
+b1 = bst(4)
+b1.add_node(2)
+b1.add_node(7)
+b1.add_node(1)
+b1.add_node(3)
+b1.add_node(5)
+b1.add_node(8)
+b1.add_node(0)
+
+Level_order(b1.get_root())
+make_link_list_from(b1.get_root())
+
+class l_node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+class Linked_list:
+    def __init__(self):
+        self.head = None
+    def add_node(self,data):
+        if self.head is None:
+            self.head = l_node(data)
+        else:
+            temp = self.head
+            while temp.next is not None:
+                temp = temp.next
+            temp.next = l_node(data)
+    def __str__(self):
+        head = self.head
+        msg = ""
+        while head is not None:
+            msg= msg + " " + str(head.data)
+            head = head.next
+        return msg
+class Queue:
+    def __init__(self,max_size=10):
+
+        self.__max_size=max_size
+        self.__elements=[None]*self.__max_size
+        self.__rear=-1
+        self.__front=0
+
+    def is_full(self):
+        if(self.__rear==self.__max_size-1):
+                return True
+        return False
+
+    def is_empty(self):
+        if(self.__front>self.__rear):
+            return True
+        return False
+
+    def enqueue(self,data):
+        if(self.is_full()):
+            print("Queue is full!!!")
+        else:
+            self.__rear+=1
+            self.__elements[self.__rear]=data
+
+    def dequeue(self):
+        if(self.is_empty()):
+            print("Queue is empty!!!")
+        else:
+            data=self.__elements[self.__front]
+            self.__front+=1
+            return data
+
+    def display(self):
+        for index in range(self.__front, self.__rear+1):
+            print(self.__elements[index])
+
+
+    def get_max_size(self):
+        return self.__max_size
+
+    #You can use the below __str__() to print the elements of the DS object while debugging
+    def __str__(self):
+        msg=[]
+        index=self.__front
+        while(index<=self.__rear):
+            msg.append((str)(self.__elements[index]))
+            index+=1
+        msg=" ".join(msg)
+        msg="Queue data(Front to Rear): "+msg
+        return msg
+class node:
+    def __init__(self,key,parent):
+        self.key = key
+        self.right = None
+        self.left = None
+        self.parent = parent
+class bst:
+    def __init__(self,key):
+        self.root = node(key,None)
+    def get_root(self):
+        return self.root
+    def add_node(self,key):
+        head = self.root
+        if head is None:
+            self.root = node(key,None)
+        while True:
+            if key > head.key:
+                if head.right is None:
+                    head.right = node(key,head)
+                    break
+                else:
+                    head = head.right
+            elif key < head.key:
+                if head.left is None:
+                    head.left = node(key,head)
+                    break
+                else:
+                    head = head.left
+    def get_node_from_key(self,key):
+        root = self.root
+        q1 = Queue(500)
+        q1.enqueue(root)
+        #print(root.key,end=" ")
+        while not q1.is_empty():
+            data = q1.dequeue()
+            if data.key == key:
+                return data
+            if data.left is not None:
+                q1.enqueue(data.left)
+                #print(data.left.key,end=" ")
+            if data.right is not None:
+                q1.enqueue(data.right)
+                #print(data.right.key,end=" ")
+        return None
+def InOrder(root):
+    if root:
+        InOrder(root.left)
+        print(root.key,end="-")
+        InOrder(root.right)
+def find_next_Successor(node):
+    p = node.parent
+    while p is not None :
+        if  p.left == node:
+            break
+        node = p 
+        p = p.parent
+    if p is not None:
+        return p.key
+    return p 
+def InOrder_successor(root,node):
+    if node.right is None:
+        return find_next_Successor(node)
+    else:
+        node = node.right
+        if node.left is not None:
+            while node.left is not None:
+                node = node.left
+        return node.key
+# b1 = bst(20)
+# b1.add_node(8)
+# b1.add_node(22)
+# b1.add_node(4)
+# b1.add_node(12)
+# b1.add_node(10)
+# b1.add_node(14)
+n1 = node(1,None)
+n1.left = node(2,n1)
+n1.right = node(3,n1)
+n1.left.left = node(4,n1.left)
+n1.left.right = node(5,n1.left)
+n1.right.right = node(6,n1.right)
+InOrder(n1)
+print("\n--------------------",end="-")
+v= 6
+print("\nInorder successor of {6} is : ",InOrder_successor(n1,n1.right.right))
+               
 }
 
 
