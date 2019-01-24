@@ -932,4 +932,85 @@ print("\nInorder successor of {6} is : ",InOrder_successor(n1,n1.right.right))
                
 }
 
+Day : 23
+Work:{
+class trieNode:                       #--------------------------TRIE-------INSERT AND SEARCH-------------------
+    def __init__(self):
+        self.elements= [None]*26
+        self.isEndofWord = False
+class Trie:
+    def __init__(self):
+        self.node = self.get_node()
+    def get_node(self):
+        return trieNode()
+    def _charToIndex(self,char):
+        return ord(char) - ord('a')
+    def insert(self,key):
+        pcrawl = self.node
+        for i in key:
+            index = self._charToIndex(i)
+            if not pcrawl.elements[index]:
+                pcrawl.elements[index] = self.get_node()
+            pcrawl = pcrawl.elements[index]
+        pcrawl.isEndofWord = True
+    def search(self,key):
+        pcrawl = self.node
+        for i in key:
+            index = self._charToIndex(i)
+            if pcrawl.elements[index] is None:
+                return False
+            pcrawl = pcrawl.elements[index]
+        return pcrawl!=None and pcrawl.isEndofWord
+                
+t = Trie()
+to_insert = ['the','way','is','tau','nothing','else']
+for string in to_insert:
+    t.insert(string)
+print(t.search("is"))
+}
+Day : 24
+Work : {
+from collections import defaultdict 
+# class node:
+#     def __init__(self):
+#         self.elements = []
+class graph:
+    def __init__(self):
+        self.elements = defaultdict(list)
+    def add_edge(self,s,d):
+        self.elements[s].append(d)
+    def bfs_of_graph(self,source):
+        is_visited = [False]*len(self.elements)
+        q = []
+        q.append(source)
+        is_visited[source] = True
+        while len(q):
+            vertex = q.pop(0)
+            print(vertex,end=" ")
+            for i in self.elements[vertex]:
+                if is_visited[i] != True:
+                    q.append(i)
+                    is_visited[i] = True
+    def dfs_util(self,s,is_visited):
+        is_visited[s] = True
+        print(s,end=" ")
+        for i in self.elements[s]:
+            if is_visited[i] == False:
+                self.dfs_util(i,is_visited)
+    def dfs(self,source):
+        is_visited = [False]*(len(self.elements))
+        self.dfs_util(source,is_visited)
+g = graph()
+g.add_edge(1,2)
+g.add_edge(0,1)
+g.add_edge(2,0)
+g.add_edge(2,3)
+g.add_edge(0,2)
+g.add_edge(3,3)
+#g.bfs_of_graph(2)
+g.dfs(2)
+        
+
+}
+
 
