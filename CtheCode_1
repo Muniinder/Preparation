@@ -1114,3 +1114,147 @@ printkDistanceNode(root.left,2)
 
 
 }
+DAY-1------------------    4 FEB 2019
+WORK: {
+          class Node:
+    def __init__(self,data):
+        self.data = data
+        self.next = None
+class LinkedList:
+    def __init__(self):
+        self.head = None
+    def get_head(self):
+        return self.head
+    def insert(self,data):
+        if self.head is None:
+            self.head = Node(data)
+        else:
+            new_node = Node(data)
+            temp = self.head 
+            while temp.next is not None:
+                temp = temp.next
+            temp.next = new_node
+    def __str__(self):
+        temp = self.head
+        msg = ""
+        while temp is not None:
+            msg = msg +" "+ str(temp.data)
+            temp = temp.next
+        msg = "Linked List from head to tail" + msg
+        return msg
+    def set_head(self,head):
+        self.head = head
+    def reverse_in_grp(self,head,grp):
+        curr = head
+        prev = None
+        nexts = None
+        count = 0
+        while curr is not None and count < grp:
+            nexts = curr.next
+            curr.next = prev
+            prev = curr
+            curr = nexts
+            
+            count+=1
+            
+        if nexts is not None:
+            head.next = self.reverse_in_grp(nexts,grp)
+        return prev
+    
+l1 = LinkedList()
+for i in range(1,9):
+    l1.insert(i)
+print(l1)
+l1.set_head(l1.reverse_in_grp(l1.get_head(),3))
+print(l1)
+--------------TOP VIEW OF BINARY TREE-----------------------------
+from collections import deque
+class Node:
+    def __init__(self, data):
+        self.data = data
+        self.left = None
+        self.right = None
+def top_view(root):
+    if root is None:
+        return
+    q = deque()
+    sets = set({})
+    topview = []
+    q.append((root, 0))
+    while q:
+        elem, hd = q.popleft()
+        if hd not in sets:
+            topview.append((elem.data, hd))
+            sets.add(hd)
+        if elem.left is not None:
+            q.append((elem.left, hd - 1))
+        if elem.right is not None:
+            q.append((elem.right, hd + 1))
+    return sorted(topview, key=lambda x: x[1])
+
+if __name__ == '__main__':
+    root = Node(1)
+    root.left = Node(2)
+    root.right = Node(3)
+    root.left.right = Node(4)
+    root.left.right.right = Node(5)
+    root.left.right.right.right = Node(6)
+
+    for i in top_view(root):
+        print(i[0], end=' ')
+--------------------------LEFT,RIGHT,TOP,VIEW ETC----------------------------
+from collections import deque
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.left = None
+        self.right = None
+def leftViewUtil(root,lev,max_lev):
+    if root == None:
+        return None
+    if max_lev[0] < lev:
+        print(root.data,end= " ")
+        max_lev[0] = lev
+    leftViewUtil(root.left,lev+1,max_lev)
+    leftViewUtil(root.right,lev+1,max_lev)
+def leftView(root):
+    max_lev = [0]
+    leftViewUtil(root,1,max_lev)
+def right_view_using_level_order(root):
+    q = []
+    q.append(root)
+    while len(q):
+        l = len(q)
+        for i in range(0,l):
+            node = q.pop(0)
+            if i == l-1:
+                print(node.data,end=" ")
+            if node.left is not None:
+                q.append(node.left)
+            if node.right is not None:
+                q.append(node.right)
+def top_view(root):
+    q = deque()
+    sets = set({})
+    topView = []
+    q.append((root,0))
+    
+    while q:
+        node,hd = q.popleft()
+        if hd not in sets:
+            topView.append((node.data,hd))
+            sets.add(hd)
+        if node.left is not None:
+            q.append((node.left,hd-1))
+        if node.right is not None:
+            q.append((node.right,hd+1)
+    return sorted(topView, key=lambda x: x[1])
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3) 
+root.left.right = Node(4)
+root.left.right.right = Node(5)
+root.left.right.right.right = Node(6)  
+top_view(root) 
+
+}
