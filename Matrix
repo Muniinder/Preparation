@@ -1,0 +1,86 @@
+------------------------For contributing python code---------------------construct ancestor Matrix from binary tree-----------------
+
+n = 100
+mat = []
+for i in range(0,n):
+    l1= []
+    for j in range(0,n):
+        l1.append(0)
+    mat.append(l1)
+class node:
+    def __init__(self,data):
+        self.data = data
+        self.left = None
+        self.right = None
+def construct_ancestor_matrix(root):
+    l1 = []
+    n = ancestor_mat(root,l1)
+    for i in range(0,n):
+        for j in range(0,n):
+            print(mat[i][j],end=" ")
+        print("\n",end="")
+def ancestor_mat(root,l1):
+    if root is None:
+        return 0
+    data = root.data
+    for i in range(0,len(l1)):
+        mat[l1[i]][data] = 1
+    l1.append(data)
+    l = ancestor_mat(root.left,l1)
+    r = ancestor_mat(root.right,l1)
+    l1.pop()
+    return (l+r+1)
+t1 = node(5)
+t1.left = node(1)
+t1.right = node(2)
+t1.left.left = node(0)
+t1.left.right = node(4)
+t1.right.right = node(3)
+
+construct_ancestor_matrix(t1)
+
+-------------------------------------------construct m*n matrix with O and X ----------------------------------------
+def intialise_mat(m,n):
+    mat = []
+    for i in range(0,m):
+        l1 = []
+        for j in range(0,n):
+            l1.append(1)
+        mat.append(l1)
+    return mat
+def print_mat(mat,m,n):
+    for i in range(0,m):
+        l1 = []
+        for j in range(0,n):
+            print(mat[i][j],end=" ")
+        print("\n",end="")
+def change_char(ch):
+    if ch == 'X':
+        return 'O'
+    return 'X'
+def spiral_traversal_fill(mat,m,n):
+    ch = 'X'
+    left,right =  0,n-1
+    top,bottom = 0,m-1
+    while left <= right and top <= bottom:
+        for i in range(left,right+1):
+            mat[top][i] = ch
+        top += 1
+        for i in range(top,bottom+1):
+            mat[i][right] = ch
+        right -= 1
+        for i in range(right,left-1,-1):
+            mat[bottom][i] = ch
+        bottom -= 1
+        for i in range(bottom,top-1,-1):
+            mat[i][left] = ch
+        left += 1
+        
+        ch = change_char(ch)
+    return mat
+def make_a_matrx(m,n):
+    mat = intialise_mat(m,n)
+    mat = spiral_traversal_fill(mat,m,n)
+    print_mat(mat,m,n)
+m,n = 15,15
+make_a_matrx(m,n)
