@@ -84,3 +84,65 @@ def make_a_matrx(m,n):
     print_mat(mat,m,n)
 m,n = 15,15
 make_a_matrx(m,n)
+
+----longest consecutive path from a given starting character---(we can use dp here for results which has been calculated before)---------------
+
+mat=[['a','c','d'],  
+     ['h','b','a'],  
+     ['i','g','f']]
+m = len(mat)
+n = len(mat[0])
+class Source:
+    def __init__(self,row=0,col=0,count=0):
+        self.row = row
+        self.col = col
+        self.count = count
+def is_valid(i,j):
+    if i >= 0 and i <n and j >=0 and j <n:
+        return True
+    return False
+def find_coordinates(mat,st_pt):
+    for i in range(0,m):
+        for j in range(0,n):
+            if mat[i][j] == st_pt:
+                return i,j
+    return None,None
+def is_greater(mat,prev,curr):
+    if ord(curr) - ord(prev) == 1:
+        return True
+    return False
+def find_longest(mat,st_pt):
+    q = []
+    i,j = find_coordinates(mat,st_pt)
+    if i == None or j == None:
+        return 0
+    pos = Source(i,j,0)
+    q.append(pos)
+    max_val = -1
+    while q :
+        data = q.pop(0)
+        prev = mat[data.row][data.col]
+        if data.row == 0 or data.row == m-1 and data.col == 0 or data.col == n-1:
+            max_val = max(max_val,data.count)
+        if is_valid(data.row+1,data.col) and is_greater(mat,prev,mat[data.row+1][data.col]):
+            q.append(Source(data.row+1,data.col,data.count+1))
+        if is_valid(data.row,data.col+1) and is_greater(mat,prev,mat[data.row][data.col+1]):
+            q.append(Source(data.row,data.col+1,data.count+1))
+        if is_valid(data.row-1,data.col) and is_greater(mat,prev,mat[data.row-1][data.col]):
+            q.append(Source(data.row-1,data.col,data.count+1))
+        if is_valid(data.row,data.col-1) and is_greater(mat,prev,mat[data.row][data.col-1]):
+            q.append(Source(data.row,data.col-1,data.count+1))
+        if is_valid(data.row+1,data.col+1) and is_greater(mat,prev,mat[data.row+1][data.col+1]):
+            q.append(Source(data.row+1,data.col+1,data.count+1))
+        if is_valid(data.row-1,data.col-1) and is_greater(mat,prev,mat[data.row-1][data.col-1]):
+            q.append(Source(data.row-1,data.col-1,data.count+1))
+        if is_valid(data.row+1,data.col-1) and is_greater(mat,prev,mat[data.row+1][data.col-1]):
+            q.append(Source(data.row+1,data.col-1,data.count+1))
+        if is_valid(data.row-1,data.col+1) and is_greater(mat,prev,mat[data.row-1][data.col+1]):
+            q.append(Source(data.row-1,data.col+1,data.count+1))
+    return max_val + 1
+print(find_longest(mat,'a'))
+print(find_longest(mat,'e'))
+print(find_longest(mat,'b'))
+print(find_longest(mat,'f'))
+
