@@ -146,3 +146,24 @@ print(find_longest(mat,'e'))
 print(find_longest(mat,'b'))
 print(find_longest(mat,'f'))
 
+-----------------------------------------print diagonally in a n*n matrix--------------------------
+def diagonal_print(mat,n):
+    left,right = 0,n-1
+    top,bottom = 0,n-1
+    for i in range(left,right+1):
+        x,y = top,i
+        while x < n and x >= 0 and y < n and y >= 0:
+            print(mat[x][y],end=" ")
+            x+=1
+            y-=1
+    top+=1
+    for i in range(top,bottom+1):
+        x,y = i,right
+        while x < n and x >= 0 and y < n and y >= 0:
+            print(mat[x][y],end=" ")
+            x+=1
+            y-=1
+
+mat = [[1,2,3,4],[5,6,7,8],[9,10,11,12],[13,14,15,16]]
+diagonal_print(mat,len(mat))
+
