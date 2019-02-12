@@ -1,0 +1,68 @@
+---------------------check children sum property-------------------------------
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.left = None
+        self.right = None
+def check_children_sum(root,valid):
+    if valid[0]:
+        if root:
+            sums = 0
+            valid[0] = True
+            check_children_sum(root.left,valid)
+            if root.left is not None:
+                sums+=root.left.data
+            if root.right is not None:
+                sums+=root.right.data
+            if root.left is not None or root.right is not None:
+                if sums != root.data:
+                    valid[0] = False
+                    return valid[0]
+            check_children_sum(root.right,valid)
+            return valid[0]
+    else:return False
+    
+root = Node(10)
+root.left = Node(10)
+#root.right = Node(10)
+root.left.left = Node(10)
+#root.left.right = Node(5)
+#root.right.left = Node(2)
+root.left.left.left = Node(1)
+valid = [True]
+print(check_children_sum(root,valid))
+
+---------------------to check if leaves are at same level--------------------------
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.left = None
+        self.right = None
+def check_level(root,max_val,val):
+    if root is None:
+        return True
+    if root.left is None and root.right is None:
+        if max_val != val:
+            return False
+    return check_level(root.left,max_val,val+1) and check_level(root.right,max_val,val+1)
+def lev_of_node(root):
+    if root == None:
+        return 0
+    return 1 + lev_of_node(root.left)
+            
+# root = Node(10)
+# root.left = Node(10)
+# root.right = Node(10)
+# root.left.left = Node(10)
+# root.left.right = Node(5)
+# root.right.left = Node(2)
+# root.left.left.left = Node(1)
+root = Node(12) 
+root.left = Node(5) 
+root.left.left = Node(3) 
+root.left.right = Node(9) 
+root.left.left.left = Node(1) 
+root.left.right.left = Node(2) 
+root.left.left.left.left = Node(4)
+max_lev = lev_of_node(root)
+print(check_level(root,max_lev-1,0))
