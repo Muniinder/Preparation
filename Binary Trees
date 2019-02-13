@@ -66,3 +66,266 @@ root.left.right.left = Node(2)
 root.left.left.left.left = Node(4)
 max_lev = lev_of_node(root)
 print(check_level(root,max_lev-1,0))
+----------------------------------Two Nodes are cousins are not----------------------------------------------
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.left = None
+        self.right = None
+def are_siblings(root,a,b):
+    if root.left is None and root.right is None:
+        return -1
+    if (root.left.data == a and root.right.data == b) or (root.left.data == b and root.right.data == a):
+        return 0
+    if root.left is not None:
+        val = are_siblings(root.left,a,b)
+    if val == -1:
+        if root.right is not None:
+            return are_siblings(root.right,a,b)
+    return val
+def level(root,find,val):
+    if root == None:
+        return -1
+    if root.data == find:
+        return val
+    lev = level(root.left,find,val+1)
+    if lev != -1:
+        return lev
+    lev = level(root.right,find,val+1)
+    return lev
+def are_cousins(root,a,b):
+    #print(are_siblings(root,a,b))
+    lev = 0
+    if level(root,a,lev) != level(root,b,lev) or not are_siblings(root,a,b) :
+        return False
+    return True
+# root = Node(10)
+# root.left = Node(10)
+# root.right = Node(10)
+# root.left.left = Node(10)
+# root.left.right = Node(5)
+# root.right.left = Node(2)
+# root.left.left.left = Node(1)
+root = Node(12) 
+root.left = Node(5) 
+root.right = Node(4)
+root.right.left = Node(6)
+root.right.right = Node(8)
+root.left.left = Node(3) 
+root.left.right = Node(9) 
+root.left.left.left = Node(1) 
+root.left.right.left = Node(2) 
+root.left.left.left.left = Node(4)
+print(are_cousins(root,9,8))
+
+
+------------------------------------CONSTRUCT BST FROM PREORDER TRAVERSAL---------------------------------------------
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.left = None
+        self.right = None
+def construct_bin_tree(arr,n):
+    root = Node(arr[0])
+def bst_util(arr,start,end):
+    if start > end :
+        return None
+    root = Node(arr[start])
+    if start != end:
+        nge = next_greater(arr,start,end)
+    elif start == end:
+        nge = -1
+    if nge == -1 :
+        return root
+    root.right = bst_util(arr,nge,end)
+    root.left = bst_util(arr,start+1,nge-1)
+    return root
+def next_greater(arr,start,end):
+    curr = arr[start]
+    for i in range(start+1,end+1):
+        if arr[i] > curr:
+            return i
+    return -1               # if next greater element is not present return -1
+def print_inorder(root):
+    q = []
+    q.append(root)
+    while q:
+        data = q.pop(0)
+        print(data.data,end = " ")
+        if data.left is not None:
+            q.append(data.left)
+        if data.right is not None:
+            q.append(data.right)
+pre_order = [10,5,1,7,40,50]
+print_inorder(bst_util(pre_order,0,len(pre_order)-1))
+
+---------------------CONSTRUCT BT FROM INORDER AND POSTORDER-------------------------------
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.left = None
+        self.right = None
+def construct_bt(Inorder,Preorder,start,end,size):
+    if start > end :
+        return None
+    root = Node(Preorder[construct_bt.counter])
+    if start == end:
+        return root
+    for i in range(0,size):
+        if Inorder[i] == Preorder[construct_bt.counter]:
+            break
+    construct_bt.counter += 1
+    root.left = construct_bt(Inorder,Preorder,start,i-1,size)
+    construct_bt.counter += 1
+    root.right = construct_bt(Inorder,Preorder,i+1,end,size)
+    return root
+def Level_Order(root):
+    q = []
+    q.append(root)
+    while q:
+        data = q.pop(0)
+        print(data.data,end=" ")
+        if data.left is not None:
+            q.append(data.left)
+        if data.right is not None:
+            q.append(data.right)
+
+Inorder = ['D','B','E','A','F','C']
+Preorder = ['A','B','D','E','C','F']
+n = len(Inorder)
+construct_bt.counter = 0
+Level_Order(construct_bt(Inorder,Preorder,0,n-1,n))
+
+-----------------------------convert inplcae binary tree to doubly linkedlist, where left,right = prev,next------------------
+class Node:
+    def __init__(self,data):
+        self.data = data   
+        self.left = None
+        self.right = None
+def convert(root):
+    changing_left(root)
+    root = changing_right_goingtoleft(root)
+    convertedTree(root)
+def convertedTree(root):
+    temp = root
+    while temp is not None:
+        print(temp.data,end= " ")
+        temp = temp.right
+    
+def changing_left(root):
+    if root is not None:
+        changing_left(root.left)
+        root.left = changing_left.prev
+        changing_left.prev = root
+        changing_left(root.right)
+
+def changing_right_goingtoleft(root):
+    temp = root
+    while temp.right is not None:
+        temp  = temp.right
+    prev = None
+    while temp.left is not None:
+        prev = temp
+        temp = temp.left
+        temp.right = prev
+    return temp
+        
+        
+changing_left.prev = None
+root = Node(10)
+root.left = Node(12)
+root.right = Node(15)
+root.left.left = Node(25)
+root.left.right = Node(30)
+root.right.left = Node(36)
+convert(root)
+
+
+----------------------------convert bianry tree to hold children sum property---------------------------------------------
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.left = None
+        self.right = None
+def convert_toSumTree(root):
+    if root is None:
+        return 0
+    if root.left is None and root.right is None:
+        return root.data
+    root.data = convert_toSumTree(root.left) + convert_toSumTree(root.right)
+    return root.data
+def add_diff(root,diff,ch):
+    temp = root
+    if ch=='L':
+        while temp.left is not None:
+            temp = temp.left
+    elif ch == 'R':
+        while temp.right is not None:
+            temp = temp.right
+    temp.data = temp.data + diff
+def change_ch(ch):
+    if ch=='L': return 'R'
+    else:return 'L'
+def Check_SumTree(root):
+    if root is None:
+        return True
+    if root.left is not None and root.right is not None:
+        convert_toSumTree(root.left)
+        convert_toSumTree(root.right)
+        ch = 'L'
+        while root.data != root.left.data + root.right.data:
+            diff = (root.data) -(root.left.data + root.right.data)
+            add_diff(root,diff,ch)
+            convert_toSumTree(root.left)
+            ch = change_ch(ch)
+            #convert_toSumTree(root.right)
+    print_Levelorder(root)
+def print_Levelorder(root):
+    q = list()
+    q.append(root)
+    while q:
+        data = q.pop(0)
+        print(data.data,end=" ")
+        if data.left is not None:
+            q.append(data.left)
+        if data.right is not None:
+            q.append(data.right)
+root = Node(60)
+root.left = Node(7)
+root.right = Node(2)
+root.left.left = Node(3)
+root.left.right = Node(5)
+root.right.left = Node(1)
+root.right.right = Node(30)
+Check_SumTree(root)
+#print_Levelorder(root)
+
+------------------------------deepest left leaf node--------------------------------------------------------
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.left = None
+        self.right = None
+def deep_left_leafNode(root,val):
+    if root is None:
+        return None
+    if root.left is not None and root.right is None:
+        deep_left_leafNode.dicts.update({val : root.left.data})
+    deep_left_leafNode(root.left,val+1)
+    deep_left_leafNode(root.right,val+1)
+deep_left_leafNode.dicts = {}
+root = Node(1) 
+root.left = Node(2) 
+root.right = Node(3) 
+root.left.left = Node(4) 
+root.right.left = Node(5) 
+root.right.right = Node(6) 
+root.right.left.right = Node(7) 
+root.right.right.right = Node(8) 
+root.right.left.right.left = Node(9) 
+root.right.right.right.right= Node(10)
+deep_left_leafNode(root,1)
+print(deep_left_leafNode.dicts[max(deep_left_leafNode.dicts)])
+
+
+
