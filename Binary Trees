@@ -327,5 +327,81 @@ root.right.right.right.right= Node(10)
 deep_left_leafNode(root,1)
 print(deep_left_leafNode.dicts[max(deep_left_leafNode.dicts)])
 
+------------------------------------no of nodes in bt which are bst-----------------------------
+class Node:
+    def __init__(self,data):
+        self.data = data
+        self.left = None
+        self.right = None
+        self.key = 0
+class BST:
+    def __init__(self):
+        self.root = None
+    def insert_node(self,data):
+        if self.root is None:
+            self.root = Node(data)
+        else:
+            temp = self.root
+            while temp != None:
+                if data < temp.data and temp.left is None:
+                    temp.key+=1
+                    temp.left = Node(data)
+                    break
+                elif data > temp.data and temp.right is None:
+                    temp.right = Node(data)
+                    break
+                elif data < temp.data and temp.left is not None:
+                    temp.key += 1
+                    temp = temp.left
+                elif data > temp.data and temp.right is not None:
+                    temp = temp.right
+def max_BST_subtree(root,max_size):
+    if root is None:
+        return 0
+    L = max_BST_subtree(root.left,max_size)
+    R = max_BST_subtree(root.right,max_size)
+    if root.right is None :
+        if root.left is None:
+            return 1
+            
+    if L != -1 and R != -1:
+        # if root.left.data < root.data and root.right.data > root.data:
+        #     val = max(L,R)
+        #     max_size[0] = max(max_size[0],1+val)
+        #     return (1 + val)
+        if root.left is not None and root.left.data < root.data:
+            val = L + R
+            max_size[0] = max(max_size[0],1+val)
+            return (1 + val)
+        if root.right is not None and root.right.data > root.data:
+            val = L + R
+            max_size[0] = max(max_size[0],1+val)
+            return (1 + val)
+    return -1
+def Inorder(root):
+    if root:
+        Inorder(root.left)
+        print(root.data,end=" ")
+        Inorder(root.right)
+max_size = [0]
+b = BST()
+b.insert_node(4)
+b.insert_node(2)
+# b.insert_node(1)
+# b.insert_node(3)
+# b.insert_node(8)
+b2 = BST()
+b2.insert_node(6)
+b2.insert_node(5)
+b2.insert_node(7)
+root = Node(11)
+root.left = b2.root
+root.right = Node(10)
+root.right.left = Node(18)
+root.right.right = b.root
+root.right.left.left = Node(25)
+root.right.left.right = Node(21)
 
-
+#Inorder(root)
+max_BST_subtree(root,max_size)
+print(max_size[0])
