@@ -1,0 +1,9 @@
+CPU SCHEDULING:
+  CPU BOUND V/S INPUT BOUND
+  PARAMETRES: burst, arrival, exit, waiting, turnAroundTime, response TIME
+  
+  ALGORITHMS FOR SCHEDULINGS:
+    first come first serve
+    shortest job first scheduling (non premptive), shortest remaining time (premptive) : best average time(i guess)
+    priority scheduling(non premptive,premptive), ageing
+    round robbin : best response time
