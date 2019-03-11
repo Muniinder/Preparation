@@ -54,3 +54,47 @@ def max_sum_path(mat,n):
 n = 2
 mat = [[348,391],[618,193]]
 print(max_sum_path(mat,n))
+
+----------------------------------minimum jumps ---------------------------------------
+There are 3 possible solutions:
+1. DP solution--------o(n^2)
+2. O(n) solution    
+3. BFS Solution
+4. my sol-----worst_case(O(n^2))
+my sol : 
+def find_min_jumps(arr,n):
+    i=0
+    count = 0
+    while (i<n):
+        if arr[i]==0:
+            return -1
+        if arr[i]==1:
+            count+=1
+            i+=1
+        else:
+            if (i+arr[i])<n-1:
+                max_val = -2456454551
+                for j in range(i+1 , i+arr[i]):
+                    if j+arr[j] >= n-1:
+                        return count+2
+                    if arr[j] <= arr[j+1]:
+                        if arr[j+1]>=max_val:
+                            max_val = arr[j+1]
+                            ind = j+1
+                    else:
+                        if arr[j]>=max_val:
+                            max_val = arr[j]
+                            ind = j
+                i = ind
+                count += 1
+            else:
+                return count+1
+    return count
+    
+test = int(input())
+for _ in range(test):
+    n = int(input())
+    arr = list(map(int,input().split()))
+    print(find_min_jumps(arr,n))
+    
+    
