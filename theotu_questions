@@ -1,0 +1,27 @@
+How does the Python Runtime actually work?
+  The code gets parsed, analyzed, and fed into an interpreter. This is all about a very important area of computer science known as 
+  compiler theory. A compiler is a program that translates code from one language (your source code) to another language (typically 
+  machine code, though "transpilers" that translate from one high-level language to another do exist). This is a really massive topic 
+  that you could spend years researching, but here's the basic version:
+  The compiler begins with a parser, a routine that reads your source code and applies the syntax rules of the language to it to figure 
+  out whether it makes sense as valid Python (in your case) code. If it doesn't, the parser will throw an error and the compiler bails 
+  out, but if it does, the parser outputs what's known as an Abstract Syntax Tree, or AST for short. The AST is a tree data structure 
+  whose nodes each contain an element of the syntax. For example, if you say x = 5, you could end up with a BinaryExpression node with 
+  an operator value of =, a Left value of ReferenceExpression(x) and a Right value of IntegerLiteralExpression(5). Your whole program 
+  can be represented by a big tree like this.
+  
+  Once the parser produces an AST, the second phase is semantic analysis. In plain English, this means "figure out what this AST means." 
+  It checks the AST to determine whether you did anything that's illegal even though it's a valid parse, (for example, trying to call a 
+  1-argument function with 3 arguments,) and raises errors if you do. Otherwise, it analyzes the AST and performs edits to it to make it 
+  simpler for a machine to understand.
+  The third phase is code generation. Once you have a fully analyzed, simplified, valid AST, you feed it into the generator, which walks 
+  the AST and produces code in the output language. This is your finished product.
+  With Python, it uses an interpreter rather than a compiler. An interpreter works in exactly the same way as a compiler, with one 
+  difference: instead of code generation, it loads the output in-memory and executes it directly on your system. (The exact details of 
+  how this happens can vary wildly between different languages and different interpreters.)
+  And how does this relate to the Python runtime system and/or library?
+  All but the very simplest languages come with a set of predefined functions that are important to a large percentage of users and would 
+  be difficult for the users to implement on their own for one reason or another. Their code can call into these functions without needing 
+  any third-party libraries. (For example, in Python you have print, which sends output to stdout. Good luck implementing that on your 
+  own!) This set of functions is generally collected in a shared library that the code can call into at run-time, which is why it's known 
+  as the language runtime library, or simply "the runtime" for short.
