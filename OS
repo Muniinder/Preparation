@@ -7,3 +7,27 @@ CPU SCHEDULING:
     shortest job first scheduling (non premptive), shortest remaining time (premptive) : best average time(i guess)
     priority scheduling(non premptive,premptive), ageing
     round robbin : best response time
+
+PROCESS SYNCHRONIZATION:
+  RACE CONDITION : Several processes access and process the manipulations over the same data concurrently, 
+                   then the outcome depends on the particular ORDER in which the access takes place.
+  CRITICAL SECTION : Critical section is a code segment that can be accessed by only one process at a time. 
+                     Critical section contains shared variables which need to be synchronized to maintain 
+                     consistency of data variables
+                     i.e. area in program execution where hardware/software access shared resources is called critical section
+      Three conditions:
+        Mutual Exclusion, Progress, Bounded Waiting
+        
+      do {
+        ask process if he want to go in critical section
+        entry section     
+        critical section  
+        exit section      
+        remainder         
+      }
+      ----peterson solution, he used turn and flag[] variables
+   TO SOLVE CRITICAL SECTION, WE CAN USE :
+      SEMAPHORES (2 types,binary and counting) :  
+              A Semaphore is an integer variable, which can be accessed only through two operations wait() and signal().
+              QUESTION : Part 5.9 Previous year gate questions on Semaphores | Process synchronization | OS ON YOUTUBE
+       
