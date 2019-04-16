@@ -32,3 +32,16 @@ PROCESS SYNCHRONIZATION:
               QUESTION : Part 5.9 Previous year gate questions on Semaphores | Process synchronization | OS ON YOUTUBE
        
   MUTEX VS SEMAPHORE ( https://www.geeksforgeeks.org/mutex-vs-semaphore/ )-----NICE EXPLANATION QITH QUESTIONS
+
+What is a Thread?
+A thread is a path of execution within a process. A process can contain multiple threads. 
+Why Multithreading?
+  A thread is also known as lightweight process. The idea is to achieve parallelism by dividing a process into multiple threads. 
+  For example, in a browser, multiple tabs can be different threads. MS Word uses multiple threads: one thread to format the text, 
+  another thread to process inputs, etc. More advantages of multithreading are discussed below
+Process vs Thread?
+  The primary difference is that threads within the same process run in a shared memory space, 
+  while processes run in separate memory spaces.
+  Threads are not independent of one another like processes are, and as a result threads share with other 
+  threads their code section, data section, and OS resources (like open files and signals). But, like process, 
+  a thread has its own program counter (PC), register set, and stack space.
