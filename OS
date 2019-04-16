@@ -31,3 +31,4 @@ PROCESS SYNCHRONIZATION:
               A Semaphore is an integer variable, which can be accessed only through two operations wait() and signal().
               QUESTION : Part 5.9 Previous year gate questions on Semaphores | Process synchronization | OS ON YOUTUBE
        
+  MUTEX VS SEMAPHORE ( https://www.geeksforgeeks.org/mutex-vs-semaphore/ )-----NICE EXPLANATION QITH QUESTIONS
