@@ -45,3 +45,17 @@ Process vs Thread?
   Threads are not independent of one another like processes are, and as a result threads share with other 
   threads their code section, data section, and OS resources (like open files and signals). But, like process, 
   a thread has its own program counter (PC), register set, and stack space.
+  
+  DEADLOCKS AND ITS PREVENTION:
+    Deadlock can arise if following four conditions hold simultaneously (Necessary Conditions) 
+      Mutual Exclusion: One or more than one resource are non-sharable (Only one process can use at a time)
+      Hold and Wait: A process is holding at least one resource and waiting for resources.
+      No Preemption: A resource cannot be taken from a process unless the process releases the resource.
+      Circular Wait: A set of processes are waiting for each other in circular form.
+
+    Methods for handling deadlock
+      There are three ways to handle deadlock
+      1) Deadlock prevention or avoidance: The idea is to not let the system into deadlock state.
+      2) Deadlock detection and recovery: Let deadlock occur, then do preemption to handle it once occurred.
+      3) Ignore the problem all together: If deadlock is very rare, then let it happen and reboot the system. 
+         This is the approach that both Windows and UNIX take.
