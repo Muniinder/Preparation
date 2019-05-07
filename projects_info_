@@ -1,0 +1,66 @@
+                                                  SAP R/3 ARCHITECTURE
+
+                              PRESENTATION LAYER		APPLICATION LAYER		DATABASE LAYER
+ GUI frontend,web browser	 ABAP programs developed 	store data and metadata
+ and executed here 	
+
+1.ABAP Dictionary and Basic Programming
+2.Modularization (Local and Global)
+3. Dialog Programming (Module Pool programs, Report Programs)
+4. Reports and Forms (Smart Forms, ALV (manual ,semi-automatic and automatic), Classical)
+5. Web Dynpro (Created views , connection of more than two views )
+6. Intro theory about BAPI
+7. To create Logs and Transfer Data (from Notepad file)
+
+
+Tell me about your sap project:
+It was a team project made in abap programming.
+The two of us made custom screens, while others two works on reports and creation of data
+We used object oriented approach to get things done.
+We made custom screens, a report on sales, online login system to request for items which were 		given to us in srs document.
+A user can request a particular item from built in functions we made, it can able to show the item,      	its, price ,quantity, its specifications in those screens
+It involves getting data from the tables, updating it according to the requirement, joining and all.
+
+
+
+E-book library-----------------------------------------------------------------------------------------------------------------------
+
+Nodejs built on top of js
+Basically an infinite loop, getting request and puts into processing, whenever which request got completed, outputs the response
+Its highly scalable
+            
+
+
+
+
+Web server ( httpserver.js ) created to handling http requests
+Book_Routing is used to route the web pages, to trigger functionalities
+Login_book is homepage
+You can login, if account is not created , route to signup_book
+after login,
+	book details are shown in Details_book page, book details are fetched from json file
+modules : fs
+
+NODEJS
+1. Any JavaScript file which doesn't contain codes for browser interaction will execute successfully.
+2. GET (url, http, QueryString and custom modules) POST (http, querystring, request.on    data,chunks,stringify, comes in json and validate)
+3. Custom events
+4. Routing:
+Process Flow : Create Server-> HandleRequest(using request.url)->DecisionBasedOnUserClick (Route to login or signup by url parsing)->RouteHandler(display pages acc to request) -> Done
+5. File System: read,write a file, using fs module, 
+ streams, zlib used to compress, decompress, to write, read
+
+
+
+Questions : 
+1.	diff b/w get and post
+2.	what is an API
+3.	diff b/w soap and rest API
+
+Tell me about your e-library project :
+	It’s a simple web application built in Nodejs, mongodb to store the information of users
+	Users can signup, login, view the books , download them in zip format.
+
+
+Resume Portal-----------------------------------------------------------------------------------------------------------------------
+
