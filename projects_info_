@@ -89,7 +89,12 @@ Resume Portal-------------------------------------------------------------------
   - I did the front-end part of this using HTML, CSS, Bootstrap
   
 
+Two tables made
 
+students 
+id, name, password, resume, information
+admin
+id, name, password
 
 
 
