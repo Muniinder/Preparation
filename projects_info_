@@ -4,24 +4,47 @@
  GUI frontend,web browser	 ABAP programs developed 	store data and metadata
  and executed here 	
 
-1.ABAP Dictionary and Basic Programming
-2.Modularization (Local and Global)
+1. ABAP Dictionary and Basic Programming
+2. Modularization (Local and Global)
 3. Dialog Programming (Module Pool programs, Report Programs)
 4. Reports and Forms (Smart Forms, ALV (manual ,semi-automatic and automatic), Classical)
 5. Web Dynpro (Created views , connection of more than two views )
 6. Intro theory about BAPI
 7. To create Logs and Transfer Data (from Notepad file)
 
+It is SAP application to maintain the sales unit for the customers with an option to place inquiry, quotation and orders online.
+All the screens were made in Dialog program and Web dynpro with an Object -Oriented Approach using ABAP programming
+language.
 
 Tell me about your sap project:
-It was a team project made in abap programming.
-The two of us made custom screens, while others two works on reports and creation of data
-We used object oriented approach to get things done.
-We made custom screens, a report on sales, online login system to request for items which were 		given to us in srs document.
-A user can request a particular item from built in functions we made, it can able to show the item,      	its, price ,quantity, its specifications in those screens
-It involves getting data from the tables, updating it according to the requirement, joining and all.
+  - It was a team project made in abap programming.
+  - The two of us made custom screens, while others two works on reports and creation of data
+  - We used object oriented approach to get things done.
+  - We made custom screens using Dialog Programming, a report on sales using Smart forms, online login system to request for items 
+    using web dynpro .
+  - A user can request a particular item from built in functions we made, it can able to show the item, its price ,quantity, its 
+    specifications in those screens
+  - It involves getting data from the tables, updating it according to the requirement, joining and all.
 
-
+  -  To make tables we use abap data dictionary objects.
+Tables:
+  CUSTOMER        QUOTATION       ORDERS       ITEMS
+Classes:
+  Customer class
+    - consist of customer id, order id, customer name, customer password
+    - can place an order
+  Item Class
+    - check availability
+    - can call customer function to place an order
+    - update the item table
+  Order class
+    - place an order 
+SOME IMPORTANT T-CODES:
+  SE11	ABAP Dictionary Maintenance
+  SE38	ABAP Editor
+  SE80	Object Navigator
+  SE37	ABAP Function Modules
+  SE93	Maintain Transaction Codes	
 
 E-book library-----------------------------------------------------------------------------------------------------------------------
 
@@ -29,10 +52,6 @@ Nodejs built on top of js
 Basically an infinite loop, getting request and puts into processing, whenever which request got completed, outputs the response
 Its highly scalable
             
-
-
-
-
 Web server ( httpserver.js ) created to handling http requests
 Book_Routing is used to route the web pages, to trigger functionalities
 Login_book is homepage
@@ -63,4 +82,30 @@ Tell me about your e-library project :
 
 
 Resume Portal-----------------------------------------------------------------------------------------------------------------------
+
+  - It is a web based portal designed to collect resumes of students for Internships. It is divided into two major modules, PR
+    section and Student section.
+  - Students upload their latest resumes and PR can export them selectively to their google drive account.
+  - I did the front-end part of this using HTML, CSS, Bootstrap
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
