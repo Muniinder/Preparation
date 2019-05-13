@@ -58,7 +58,10 @@ Login_book is homepage
 You can login, if account is not created , route to signup_book
 after login,
 	book details are shown in Details_book page, book details are fetched from json file
-modules : fs
+modules : : fs, net, zlib, crypto, http, url, querystring
+
+It is an online application to view and downloads e-books. any user can able to create account and then login
+	to view and download the books. 
 
 NODEJS
 1. Any JavaScript file which doesn't contain codes for browser interaction will execute successfully.
