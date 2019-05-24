@@ -7,3 +7,5 @@ https://www.geeksforgeeks.org/amazon-interview-experience-on-campus-for-sde-1-20
 
 
 https://drive.google.com/file/d/13eezDWJmuVCORnqWhU361bI01xqC_W_T/view?usp=drivesdk
+
+https://drive.google.com/file/d/1H6zToWo-1qU47HaUSKko3lHeqjALkVo5/view?usp=drivesdk
