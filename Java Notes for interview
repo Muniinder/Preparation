@@ -1,0 +1,9 @@
+JDK, JRE, JVM:
+JVM provides runtime env. i.e. java source code is converted into byte code and that byte code is executed by JVM.
+
+JRE: provides a set of libraries run by JVM in order to complete execution.
+
+JDK: contain various api,packages  like java.io 
+
+SYNCHRONIZATION: 
+  
